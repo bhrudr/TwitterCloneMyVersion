@@ -5,6 +5,7 @@
 //created and returned to you the first time because of how module 
 //import/export works in ES6.
 const mongoose = require("mongoose");
+require('dotenv').config();
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
@@ -17,7 +18,7 @@ class Database {
     }
 
     connect() {
-        mongoose.connect("mongodb+srv://admin:dbUserPassword@twitterclonecluster.e0mcw.azure.mongodb.net/TwitterCloneDB?retryWrites=true&w=majority")
+        mongoose.connect(process.env.DB_URL)
         .then(() => {
             console.log("database connection successful");
         })
